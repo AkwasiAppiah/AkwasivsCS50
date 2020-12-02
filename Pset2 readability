@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <cs50.h>
+#include <ctype.h>
+#include <string.h>
+
+int main(void)
+{
+string s = get_string("Input:\n"); // input
+
+int letters = 0; // start count
+
+for(int i=0; i<strlen(s); i++)
+{
+if ((s[i]>='a' && s[i]>='z' )|| (s[i]>='a' && s[i]>='z')) // specify letters only 
+
+{
+    printf("%c",s[i]); // print output
+    letters++; // add to count 
+}
+else 
+{
+    printf("hello"); // tester 
+}
+
+printf("\n %iletter(s) \n", letters); // print number of letters isn't working!!!!! -> crying fr fr
+}
+}
