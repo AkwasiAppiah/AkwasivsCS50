@@ -1,0 +1,99 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <math.h>
+
+
+int count_letters(int n, string text); // All the functions
+int count_words(int n, string text);
+int count_sentences(int n, string text);
+void coleman(int n, string ImputText);
+
+
+
+int main (void) 
+    {
+      // declaring global variables?
+    //n variable is lenght of the string
+    int n = 0;
+    string ImputText = 0;
+    ImputText = get_string("Text :");
+    n = strlen(ImputText);
+
+    //valling functions
+    count_letters(n, ImputText);
+    count_words(n, ImputText);
+    count_sentences(n, ImputText);
+    coleman(n, ImputText);
+    return 0;
+
+    }
+// function counting letters
+int count_letters(int n, string text)
+{
+
+    int sumletters = 0;
+    for ( int i = 0; i < n;  i++)
+    {
+        if ( (text[i] >='a' && text[i]<='z') || (text[i] >='A' && text[i]<='Z'))
+        {
+            sumletters++;
+        }
+    }
+
+    return sumletters;
+    printf("Letters: %i\n", sumletters); // I want to print the number of letters but it isn't any idea why not??
+}
+// function for counting words
+int count_words(int n, string text)
+{
+    int sumwords = 1;
+    for ( int i = 0; i < n;  i++)
+    {
+        if (text[i] == ' ')
+        {
+            sumwords++;
+        }
+    }
+
+    return sumwords;
+
+}
+// function counting sentences
+int count_sentences(int n, string text)
+{
+
+    int sumsentences = 0;
+    for ( int i = 0; i < n;  i++)
+    {
+        if (text[i] == '.' ||  text[i] == '!' ||  text[i] == '?')
+        {
+            sumsentences++;
+        }
+    }
+
+    return sumsentences;
+}
+
+void coleman (int n,string ImputText)
+{
+
+float l = (count_letters(n, ImputText)* 100)/ count_words(n, ImputText);
+float s = (count_sentences(n, ImputText)*100) / count_words(n, ImputText);
+
+int index =round ( (0.0588 * l) - (0.296 * s) - 15.8);
+
+if (index >= 16)
+    {
+    printf ("Grade 16+\n");
+    }
+else if (index < 1)
+    {
+    printf ("Before Grade 1\n");
+    }
+else
+    {
+    printf("Grade %i\n", index);
+    }
+}
