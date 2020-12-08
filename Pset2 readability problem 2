@@ -5,25 +5,22 @@
 #include <string.h>
 #include <math.h>
 
-//function list
-int count_letters(int n, string text);
-int count_words(int n, string text);
-int count_sentences(int n, string text);
-void index(int n, string text);
+int count_letters (int n, string text);
+int count_words (int n, string text);
+int count_sentences (int n, string text );
+void index (int n, string text);
 
 int main(void)
 {
-  //set appropiate variables
   int n = 0;
   string ImputText = 0;
   ImputText = get_string("Text?:"); //input
   n = strlen(ImputText);
   
-  //run the fucntions 
-  count_letters(n, ImputText);
-  count_words(n, ImputText);
-  count_sentences(n, ImputText);
-  index(n, ImputText);
+  count_letters (n, ImputText);
+  count_words (n, ImputText);
+  count_sentences (n, ImputText);
+  index (n, ImputText);
   return 0;
 }
 
@@ -41,9 +38,9 @@ int count_letters (int n, string text)
   return letters;
 }
 
-int count_words(int n, string text)
+int count_words (int n, string text)
 { 
-  int words = 1; // THINK OF EDGE CASES
+  int words = 1; 
   
   for (int i=0; i<n; i++)
   
@@ -57,30 +54,28 @@ int count_words(int n, string text)
   return words;
 }
 
-int count_sentences(int n, string text)
+int count_sentences (int n, string text)
 { 
   int sentences = 0;
   
   for (int i = 0; i < n; i++)
   {
-    if (text[i] == '.' || text[i] == '?' || text[i] == '!')
+    if (text[i] == '.'|| text[i] == '?' || text[i] == '!')
     
-    {
     sentences++;
-    
   }
+  
   return sentences;
 }
 
-}
-void index(int n, string ImputText)
+void index (int n, string ImputText)
 
 { 
   
-  float L = ((float)count_letters(n, ImputText)*100) / ((float)count_words(n, ImputText)); // cast to float for accuracy
+  float L = ((float)count_letters(n, ImputText)*100) / ((float)count_words(n, ImputText));
   float S = ((float)count_sentences(n, ImputText)*100 / (float)count_words(n, ImputText));
   
-  int index = round ((0.0588 * L) - (0.296 * S) - 15.8);
+  int index = round ( (0.0588 * L) - (0.296 * S) - 15.8);
   
   if (index >= 16)
   {
