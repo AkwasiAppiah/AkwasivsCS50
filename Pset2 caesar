@@ -6,12 +6,12 @@
 #include <math.h>
 #include <stdlib.h>
 
-int is_digit (string s);
+int is_digit(string s); //function
 
-int main (int argc, string argvc[])
+int main(int argc, string argvc[]) // main fuction
 
 {
-    if (argc != 2 || is_digit(argvc[1]) > 0)
+    if (argc != 2 || is_digit(argvc[1]) > 0) // if human doesn't enter two arguements and any of those arguements has a letter will reject and return 1 to cancel
    {
        printf("Usage: ./caesar key\n");
        return 1;
@@ -19,37 +19,37 @@ int main (int argc, string argvc[])
 
     else
     {
-   int key = atoi (argvc[1]);
+   int key = atoi(argvc[1]);
 
-   string plaintext = get_string("plaintext:");
-   printf("ciphertext: ");
+   string plaintext = get_string("plaintext:"); // input
+   printf("ciphertext: "); // ciphertext title
 
    for (int i = 0, n = strlen(plaintext); i < n; i++)
    {
-       if (islower(plaintext[i]))
+       if (islower(plaintext[i])) // filter system 1 - if lowercase letter shift appropiately 
        {
            printf("%c", (((plaintext[i]-'a') + key) % 26) + 'a');
        }
 
-       else if (isupper(plaintext[i]))
+       else if (isupper(plaintext[i])) // filter system 2 - if uppercase letter shift appropiately 
        {
            printf("%c", (((plaintext[i]-'A') + key) % 26) + 'A');
        }
 
        else
        {
-           printf("%c", plaintext[i]);
+           printf("%c", plaintext[i]); // if neither do nothing 
        }
     }
-    printf("\n");
+    printf("\n"); // print a new line 
 }
 }
 
-int is_digit(string s)
+int is_digit(string s) // verify if alphabetic character is detected by adding one to the count
 
 {
     int count = 0;
-    int n = strlen (s);
+    int n = strlen(s);
     for (int i=0; i < n ; i++)
     {
         char x = s[i];
