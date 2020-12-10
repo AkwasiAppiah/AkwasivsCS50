@@ -1,0 +1,62 @@
+
+#include <stdio.h>
+#include <cs50.h>
+#include <ctype.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int is_digit (string s);
+
+int main (int argc, string argvc[])
+
+{
+    if (argc != 2 || is_digit(argvc[1]) > 0)
+   {
+       printf("Usage: ./caesar key\n");
+       return 1;
+   }
+
+    else
+    {
+   int key = atoi (argvc[1]);
+
+   string plaintext = get_string("plaintext:");
+   printf("ciphertext: ");
+
+   for (int i = 0, n = strlen(plaintext); i < n; i++)
+   {
+       if (plaintext[i]>='a' && plaintext[i]<= 'z')
+       {
+           printf("%c", (((plaintext[i]-'a') + key) % 26) + 'a');
+       }
+
+       else if (plaintext[i]>='A' && plaintext[i]<= 'Z')
+       {
+           printf("%c", (((plaintext[i]-'A') + key) % 26) + 'A');
+       }
+
+       else
+       {
+           printf("%c", plaintext[i]);
+       }
+    }
+    printf("\n");
+}
+}
+
+int is_digit(string s)
+
+{
+    int count = 0;
+    int n = strlen (s);
+    for (int i=0; i < n ; i++)
+    {
+        char x = s[i];
+        if (!isdigit(x))
+        {
+        count ++ ;
+}
+}
+return count;
+}
